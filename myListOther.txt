@@ -1,0 +1,3 @@
+#Lists, stores, and displays the top-level directory contents of a html file.
+`ls -m .. >dir.html`
+`firefox dir.html`
