@@ -1,0 +1,12 @@
+echo "<html>" > htmlRun.html
+echo "<body>" >> htmlRun.html
+
+for d in *
+do
+	echo ${d} >> htmlRun.html
+	echo "<br>" >> htmlRun.html
+done
+
+echo "</html>" >> htmlRun.html
+echo "</body>" >> htmlRun.html
+firefox htmlRun.html
