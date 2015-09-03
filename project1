@@ -7,6 +7,6 @@ do
 	echo "<br>" >> htmlRun.html
 done
 
-echo "</html>" >> htmlRun.html
 echo "</body>" >> htmlRun.html
+echo "</html>" >> htmlRun.html
 firefox htmlRun.html
