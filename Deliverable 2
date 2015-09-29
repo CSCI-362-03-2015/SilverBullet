@@ -1,0 +1,49 @@
+  Calculator for sugarLabs:
+1. Whether or not it has completed parentheses, and if it errors on just missing ‘(‘ like regular calculators.
+2. How it handles two or more operators in a row (ex: ++, --)
+3. How multiple decimal points are treated
+4. The multiplication of two negative numbers must be positive.
+5. multiply by zero
+
+  Possible ways to test in order:
+1. Produce a try catch that creates a string version of the entered values and returns an error if a parenthese does not 
+  have a proper match, or if desired only returns an error if there is no front parenthese to match a closing parenthesis.
+2. Make sure that when something like a double negative sign is read it reads it as minus a negative, and two pluses is 
+  plus a positive, double multiplication could either be a positive simply return an error, and double division could 
+  return be used for square root or return an error, also make sure that more than two operators in a row returns an error.
+3. To make sure only one decimal exist, create a string of the entered values, and count if more than one ‘.’ appears within 
+  an arrangement of numbers and decimal points, if so return an error. Anything not a decimal or number resets count.
+4. Make code that reads and stores whether or not two values entered are negative and if so makes the resulting value 
+  positive then carries on reading the rest of the entered values to make sure that any other negative numbers work properly.
+5. Make sure that multiplying by 0 always produces zero and test whether or not cases where 0 is multiplied by another 
+  number followed by another action are properly done, for example make sure that the square root of (25*0) properly 
+  produces an error and does not try to just root 25 then multiply by 0.
+
+  Allocation of resources:
+- Testing should be fairly easily covered by one to two people since a calculator is limited in functions, however 
+  certain challenges might require a greater amount of testing such as making sure the multiplication of zero properly 
+  interacts within all the other functions of a calculator: square rooting, dividing by a number times zero, etc.
+- In cases where testing discovers a bug that is easy to fix one of the two testers shall fix it while the other 
+  continues to look for another problem to fix.
+- In cases of a difficult to solve or major bug both testers shall swap to working on it.
+- Since testing should be manageable by two people the other two developers of our team could continue to develop new content.
+
+  Process for testing:
+1. After a new feature is implemented testers will document all cases they can think of to test.
+2. As each case is tested they should be moved to one of two list, a list that contains properly functioning 
+  cases and a list of malfunctioning cases.
+3. Once a case is in the malfunctioning list, the testers can choose to allocate resources to fixing it or continue to 
+  work through the list of errors.
+4. In the case of fixing a bug related cases should be retested, if time permits, to make sure that no new errors have 
+  arisen in the related cases.
+5. After all cases for a feature have been tested it should be marked as properly functioning.
+
+  Testing schedule:
+- All testing should be completed by 10/24/2015.
+
+  Hardware and software requirements:
+- Testing will require Linux and a functional version SugarLabs with the calculator activity.
+
+  Constraints:
+- Constraints include that there is a deadline and an unlimited number of possible user inputs for the calculator.
+
