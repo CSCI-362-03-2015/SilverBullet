@@ -1,0 +1,9 @@
+TestNumber:5
+TestedRequirement:Test that two very precise decimals, to the 20th decimal place, will have a sum of zero
+TestedComponent:functions.py
+TestedMethod:add(x, y)
+TestInputs:
+.99999999999999999999
+.00000000000000000001
+ExpectedOutcomes:
+1

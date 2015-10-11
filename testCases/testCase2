@@ -1,0 +1,9 @@
+TestNumber:2
+TestedRequirement:Test that passing one number and one string will return a Type Error
+TestedComponent:functions.py
+TestedMethod:add(x, y)
+TestInputs:
+1
+"testString"
+ExpectedOutcomes:
+Type Error

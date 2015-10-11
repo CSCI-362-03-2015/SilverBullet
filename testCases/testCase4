@@ -1,0 +1,9 @@
+TestNumber:4
+TestedRequirement:Test that the sum of zero and an integer return that integer
+TestedComponent:functions.py
+TestedMethod:add(x, y)
+TestInputs:
+0
+7
+ExpectedOutcomes:
+7

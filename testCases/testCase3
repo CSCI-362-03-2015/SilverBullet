@@ -1,0 +1,9 @@
+TestNumber:3
+TestedRequirement:Test that adding two negative numbers returns the correct negative sum
+TestedComponent:functions.py
+TestedMethod:add(x, y)
+TestInputs:
+-1
+-1
+ExpectedOutcomes:
+-2
