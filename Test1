@@ -1,0 +1,46 @@
+from functions import *
+"""
+Author: Silver Bullets
+Date:10/03/2015
+Description: Tests the sugar Calculator add method for possible vulnerabilites   
+
+"""
+     
+
+def test1():
+    
+    # X and Y are the test case to be tested in the add method 
+    x=[1,1, None,.9999999,-1]
+    y=[2,"silver",8,1,-1]
+
+    # The result of the test cases is placed in the result list
+    results=[None, None,None,None,None]
+    
+    # The answer to the test cases 
+    oralce=[3,TypeError, TypeError,1.9999999,-2]
+
+    # Calculates the results of the add method.
+    for i in range(len(x)):
+    
+        try:
+            
+            results[i]=add(x[i], y[i])
+            print(results[i])
+            
+        except TypeError:
+            results[i]= "TypeError"
+            print(results[i])
+
+            
+    #compares the results to the oralce and prints Pass or Fail
+    for i in range(len(oralce)):
+        
+        if (results[i]==oralce[i]):
+            print("Test {0} Pass".format(i))
+
+        else:
+             print("Test {0} Failed".format(i))
+
+                     
+
+test1()
