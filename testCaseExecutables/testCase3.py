@@ -17,8 +17,8 @@ Description: Tests the sugar Calculator add method for possible vulnerabilites
 def test3():
     
     # X and Y are the test case to be tested in the add method 		
-	x=1
-	y=1
+	x=-1
+	y=-1
 	
     # Calculates the results of the add method.
 	try:
