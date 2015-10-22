@@ -7,10 +7,10 @@ arr=( * )
 
 declare -a String
 
-#loops throught array and pipes output to text file
+#loops through the array and pipes output to text file
 for ((i=0; i<${#arr[*]}; i++));
 do	         
-	  python ${arr[i]} |cat > out.txt
+	  python ${arr[i]} | cat >> out.txt
 	      	
 done
 
