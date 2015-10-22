@@ -2,8 +2,8 @@ TestNumber: 1
 TestedRequirement:Test that passing two whole integers will return their sum
 TestedComponent:functions.py
 TestedMethod:add(x, y)
+driver: TestCase1.py
 TestInputs: 1 3
-ExpectedOutcomes:some file
 Oracle: testCase1oacle.txt
 
 
