@@ -5,5 +5,7 @@ TestedMethod:add(x, y)
 TestInputs:
 1
 3
-ExpectedOutcomes:
-4
+ExpectedOutcomes:some file
+Oracle: testCase1oacle.txt
+
+
