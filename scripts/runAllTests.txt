@@ -7,6 +7,7 @@ arr=( * )
 
 declare -a String
 
+#loops throught array and pipes output to text file
 for ((i=0; i<${#arr[*]}; i++));
 do	         
 	  python ${arr[i]} |cat > out.txt
@@ -17,7 +18,7 @@ done
 
 cd ..
 cd oracles1
-
+#Creates an array of files in the dir.
 arr2=(*)
 declare -a String2
 
