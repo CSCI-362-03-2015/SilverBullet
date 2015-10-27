@@ -1,346 +1,132 @@
+
 import sys
 import re
-import subprocess
 import webbrowser
-
-
-
-sys.path.append("../") #changes the path so new directories can be added
 from os import listdir
 import os
+import helper
 
     
-#def findPyfile(fileName):
-
-  #  test2 = fileName.readlines()
-   # pyfile=""
-   # print test2
     
-   # for i in test2:
-    #    if i.find("py")  != -1:
-            
-      #      return i 
-                      
-   # return " No file in this Test Case "
-    
-def findTestInput(fileName):
-    
-    test = fileName.read()
-    
-    lis= re.findall(r"[\w|\S|.|W]+ [\,] .+", test)
-    
-    return lis[0]
-    
-    
-    
-def findMethod(fileName):
-    
-    test = fileName.read()
-    
-    lis= re.findall(r"[\s][\w]+[.]+[\)]", test)
-    
-    return lis[0]
-    
- 
-    
-def findPyfile2(fileName):
-
-    test = fileName.read()
-    
-    start =test.find('TestCase') 
-    end = test.find('.py',start) 
-    
-    return test[start:end]
-    
-def newDir(dirs):
-    newDir=[]
-    for file in dirs:
-        if file.find("~") != -1:
-            continue     
-        else:
-            newDir.append(file)
-     
-    return newDir
-    
-def testReq(fileName):
-    test= fileName.readlines()
-
-    return test[3]
-    
-    
-def firstTable():
-    
-        
-    string ="""  <table style="width:100%">
-  <tr>
-    <th>Test Number</th>
-    <th>Test Requirements</th>		
-    <th>Tested Method</th>
-    <th>Inputs</th>		
-    <th>Tested Excuable file</th>
-    <th>Excepted Outcome</th>		
-    <th>Oracle</th>
-    <th>Pass/Fail</th>
-  </tr>
-  
-  <p>"""
-    
-    
-    return string
-        
-        
-def tableRow(TestNum,Tr,Tm, testInput, TestFiles, outputs,OracleV, passFail):
-        
-    string= """<tr>
-        <td>%s</td>
-        <td>%s</td>		
-        <td>%s</td>
-        <td>%s</td>
-        <td>%s</td>		
-        <td>%s</td>
-        <td>%s</td>		
-        <td>%s</td>
-        </tr>""" % (TestNum,Tr,Tm, testInput, TestFiles, outputs, OracleV, passFail)
-    
-    return string
-    
-def endTable():
-        
-    string="""   
-
-        </p>
-        
-        </div>
-
-        <div id="footer">
-
-        </div>
-
-        </body>
-        </html>"""
-    
-    return string
-
 ################################################################
 #####Main
-#########################################################################
-def runAllTest():
+################################################################
+def main():
+         
+    testCasesPath="/home/jameson/TestAutomation/testCases/"   
+
+    os.chdir(testCasesPath)#changes current directory 
+
+    testCaseList = helper.filterDir(sorted(os.listdir(testCasesPath)))# Store a list of files in the directory
+
+    pyFiles =[]# List to store py execuable file
+    pyInput =[]# List of inputs for each testCase file
+    testMethodList=[]# list of methods for each testCase
+    testReqs=[]# List of Tested Requirements from each file testCase file
+
     
+    ###########################################################
+
+    #iterate through each in the dir
+    #finds the data needed
+    # and appends it to its related list 
+    for file in testCaseList: 
+        
+        fil = open(file, "r")
+
+        string = fil.read()
+
+        pyFiles.append(helper.findPyfiles(string))       
+        pyInput.append(helper.findTestInput(string))
+        testMethodList.append(helper.findMethod(string))
+        testReqs.append(helper.findRequire(string))
+        
+        fil.close()
        
- 
-    path="/home/jameson/TestAutomation/testCases/"    
-    os.chdir(path)
-    dirs = os.listdir(path)
-    pyFiles =[]
-    pyInput =[]
-    testMethodL=[]
-    dirs= sorted(dirs)
-    #########################################
-    for file in dirs:
-        if file.find("~") != -1:
-            continue
-        
-        else:
-            fil = open(file, "r")
-        
-            inPut= findTestInput(fil)
-            
-            
-            
-            pyInput.append(inPut)
-       
-    print "here ",pyInput
-   ######################################## 
-    for file in dirs:
-        if file.find("~") != -1:
-            continue     
-        else:
-            fil = open(file, "r")
-        
-            
-            ExeFile= findPyfile2(fil)
-            
-            pyFiles.append(ExeFile)
-                
-        
-   
-    
-   
-   ##########################################
-   
-   ######################################## 
-    #for file in dirs:
-      #  if file.find("~") != -1:
-      #      continue     
-        #else:
-           # fil = open(file, "r")
-        
-            
-            #mFile= findMethod(fil)
-            
-           # testMethodL.append(mFile)
-                
-        
-   
-    
-   
-   ##########################################
+    #########################################################    
+
+    #Search path for modules
     sys.path.insert(0,"/home/jameson/TestAutomation/testCaseExecutables/")
-    name= newDir(dirs)
-    
-    for i in range(len(dirs)):
-        print(pyInput[i])
+    for i in range(len(testCaseList)):
+        
         arg = pyInput[i].split(",")
-        importedM = __import__(pyFiles[i])
+
+        ###use to import a string as module
+        importedM = __import__(pyFiles[i][:-3])
         
         
-        exceptedO = importedM.test(eval(arg[0]),eval(arg[1]))
-        oPath= "/home/jameson/TestAutomation/Output/"+ name[i]+"Output.txt"
+        exceptedOutput = importedM.testDriver(eval(arg[0]),eval(arg[1]))
+        oPath= "/home/jameson/TestAutomation/Output/"+ testCaseList[i]+"Output.txt"
         
         outfile =open(oPath,"w")
-        outfile.write(str(exceptedO))
+        outfile.write(str(exceptedOutput))
         
         outfile.close()
         
-  ##########################################  
-    pathORACLE="/home/jameson/TestAutomation/oracles/"
+  ######################################################## 
+
+    pathOracle="/home/jameson/TestAutomation/oracles/"
     pathOutput="/home/jameson/TestAutomation/Output/"
         
-    oraclesFiles= newDir(sorted(os.listdir(pathORACLE)))
-    outputFiles= newDir(sorted(os.listdir(pathOutput)))
+    oraclesFiles= helper.filterDir(sorted(os.listdir(pathOracle)))# Creates a list of the files in the oracle directory
+    outputFiles= helper.filterDir(sorted(os.listdir(pathOutput))) #Creates a list of the files in the Output directory
     
     
     
-    outputList=[]#outputs
-    oracleList=[]#OracleV
-    resultList=[]#pass/Fail
+    outputList=[]#List of contents in each output file
+    oracleList=[]#List of contents in each oracle file
+    resultList=[]#List of Pass/Fail
         
     for i in range(len(outputFiles)):
-        orContents=open("/home/jameson/TestAutomation/oracles/"+oraclesFiles[i],"r")
+
+        oracleContents=open(pathOracle+oraclesFiles[i],"r") #opens oracle file
         
-        outContents=open("/home/jameson/TestAutomation/Output/"+outputFiles[i],"r")
-        OutcontentString=outContents.read()
-        OracleString= orContents.read()
+        outContents=open(pathOutput+outputFiles[i],"r")# opens output put file
+
+        OracleString= oracleContents.read() #reads oracle file
+
+        OutcontentString=outContents.read()#reads output file
+        
         
         oracleList.append(OracleString)
         outputList.append(OutcontentString)
  
         
+        #Compares the tested result with the oracle 
+        #and appends Pass to $resultList if they are equal 
+        #and Fail if not
         if eval(OracleString) == eval(OutcontentString):
-            print "pass"
+            
             resultList.append("Pass")
         else:
-            print" fail"
+            
             resultList.append("Fail")
-        
-    hPath= "/home/jameson/TestAutomation/reports/report.html"
-    htmlfile = open(hPath, "w")
+
+
+    # creates a html file and write to it.   
+    helper.writeHtml()# see method
     
-    htmlfile.write("""
     
-     <!DOCTYPE html>
-           <html>
-            <head>
-                <style>
-                #header {
-                 background-color:black;
-                 color:white;
-                  text-align:center;
-                 padding:5px;
-                    }
-      
+    # appends  to the report.html file
+    with open("/home/jameson/TestAutomation/reports/report.html","a") as htmlfile:
+        htmlfile.write(helper.firstTableRow())
 
-                #section {
-                  width:350px;
-                  float:center;
-                    padding:10px;	
-                    text-align:left; 	
-     
-}
-                    #footer {
-                     background-color:black;
-                     color:white;
-                    clear:both;
-                    text-align:center;
-    
-                        padding:5px;	 	 
-                        }
-
-                        table, th, td {
-                         border: 1px solid black;
-                         border-collapse: collapse;
-                        }
-                        th, td {
-                          padding: 5px;
-                          text-align: left;
-                        }
-                        </style>
-                         </head>
-                          <body>
-
-                        <div id="header">
-                        <h1>Silver Bullets</h1>
-                        </div>
-
-
-
-                        <div id="section">
-                        <h2>Test Report</h2>""")
-                        
-    htmlfile.close()
-    with open(hPath,"a") as htmlfile:
-        htmlfile.write(firstTable())
+        #Creates a row in the table for each test case
         for i in range(len(pyFiles)):
-            fileN= open(path+"testCase"+str(i+1),"r")
-            htmlfile.write(tableRow(i+1,testReq(fileN),"add(x , y)", pyInput[i], pyFiles[i]+".py", outputList[i],oracleList[i], resultList[i]))
-        htmlfile.write(endTable())
+
+
+            #Create a row in the table and writes in the data from the lists
+            htmlfile.write(helper.addTableRow(i+1,testReqs[i],testMethodList[i], pyInput[i], pyFiles[i], outputList[i],oracleList[i], resultList[i]))
+
+        #writes the closing to the  file html(</html>)     
+        htmlfile.write(helper.endHtml())
+
         htmlfile.close()
         
         
-        url= "file:///home/jameson/TestAutomation/reports/report.html"
-        webbrowser.open(url)
+    url= "file:///home/jameson/TestAutomation/reports/report.html"
         
-   
-    
-    
-    
-    
-    
- 
-    
+    webbrowser.open(url)
         
-        
-        
-    
-    
-    
-    
-    #newS = pyFiles[0]+".py " + x[0] +""+x[1]
-    #print newS
-    
-   # os.chdir("/home/jameson/TestAutomation/testCaseExecutables/")
-    
-    
-   # p= subprocess.Popen(newS, shell=True)
-    
-    #os.system(newS)
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
-
-    
-
-
-runAllTest()
-    
-    
-    
-    
+main()
