@@ -21,7 +21,7 @@ def findMethod(stringFile):
 def findRequire(stringFile):
 
     
-    lis =re.findall(r"TestedRequirement:.+", stringFile)
+    lis =re.findall(r"Returns.+", stringFile)
     
     return lis[0]
     
@@ -43,7 +43,7 @@ def filterDir(testCaseList):
     
 def writeHtml():
 
-    htmlfile = open("/home/jameson/TestAutomation/reports/report.html", "w")
+    htmlfile = open("../reports/report.html", "w")
     htmlfile.write("""
     
      <!DOCTYPE html>
@@ -79,7 +79,7 @@ def writeHtml():
             <body>
 
                         <div id="header">
-                        <h1>Silver Bullets</h1>
+                        <h1>SilverBullet</h1>
                         </div>
 
 
@@ -95,8 +95,7 @@ def firstTableRow():
         
     string =""" <p> <table style="width:100%">
   <tr>
-    <th>Test Number</th>
-    <th>Test Requirements</th>      
+    <th>Test Number</th>     
     <th>Tested Method</th>
     <th>Inputs</th>     
     <th>Tested Executable file</th>
@@ -111,7 +110,7 @@ def firstTableRow():
     return string
         
         
-def addTableRow(TestNum,Tr,Tm, testInput, TestFiles, outputs,OracleV, passFail):
+def addTableRow(TestNum,Tm, testInput, TestFiles, outputs,OracleV, passFail):
         
     string= """<tr>
         <td>%s</td>
@@ -121,8 +120,8 @@ def addTableRow(TestNum,Tr,Tm, testInput, TestFiles, outputs,OracleV, passFail):
         <td>%s</td>     
         <td>%s</td>
         <td>%s</td>     
-        <td>%s</td>
-        </tr>""" % (TestNum,Tr,Tm, testInput, TestFiles, outputs, OracleV, passFail)
+        
+        </tr>""" % (TestNum,Tm, testInput, TestFiles, outputs, OracleV, passFail)
     
     return string
     
