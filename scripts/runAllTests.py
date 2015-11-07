@@ -13,7 +13,7 @@ import helper
 ################################################################
 def main():
          
-    testCasesPath="/home/jameson/TestAutomation/testCases/"   
+    testCasesPath="../testCases/"   
 
     os.chdir(testCasesPath)#changes current directory 
 
@@ -39,14 +39,14 @@ def main():
         pyFiles.append(helper.findPyfiles(string))       
         pyInput.append(helper.findTestInput(string))
         testMethodList.append(helper.findMethod(string))
-        testReqs.append(helper.findRequire(string))
+        
         
         fil.close()
        
     #########################################################    
 
     #Search path for modules
-    sys.path.insert(0,"/home/jameson/TestAutomation/testCaseExecutables/")
+    sys.path.insert(0,"../testCaseExecutables/")
     for i in range(len(testCaseList)):
         
         arg = pyInput[i].split(",")
@@ -56,7 +56,7 @@ def main():
         
         
         exceptedOutput = importedM.testDriver(eval(arg[0]),eval(arg[1]))
-        oPath= "/home/jameson/TestAutomation/Output/"+ testCaseList[i]+"Output.txt"
+        oPath= "../Output/"+ testCaseList[i][:-4]+"Output.txt"
         
         outfile =open(oPath,"w")
         outfile.write(str(exceptedOutput))
@@ -65,8 +65,8 @@ def main():
         
   ######################################################## 
 
-    pathOracle="/home/jameson/TestAutomation/oracles/"
-    pathOutput="/home/jameson/TestAutomation/Output/"
+    pathOracle="../oracles/"
+    pathOutput="../Output/"
         
     oraclesFiles= helper.filterDir(sorted(os.listdir(pathOracle)))# Creates a list of the files in the oracle directory
     outputFiles= helper.filterDir(sorted(os.listdir(pathOutput))) #Creates a list of the files in the Output directory
@@ -78,6 +78,7 @@ def main():
     resultList=[]#List of Pass/Fail
         
     for i in range(len(outputFiles)):
+        print oraclesFiles, outputFiles
 
         oracleContents=open(pathOracle+oraclesFiles[i],"r") #opens oracle file
         
@@ -108,7 +109,7 @@ def main():
     
     
     # appends  to the report.html file
-    with open("/home/jameson/TestAutomation/reports/report.html","a") as htmlfile:
+    with open("../reports/report.html","a") as htmlfile:
         htmlfile.write(helper.firstTableRow())
 
         #Creates a row in the table for each test case
@@ -116,7 +117,7 @@ def main():
 
 
             #Create a row in the table and writes in the data from the lists
-            htmlfile.write(helper.addTableRow(i+1,testReqs[i],testMethodList[i], pyInput[i], pyFiles[i], outputList[i],oracleList[i], resultList[i]))
+            htmlfile.write(helper.addTableRow(i+1,testMethodList[i], pyInput[i], pyFiles[i], outputList[i],oracleList[i], resultList[i]))
 
         #writes the closing to the  file html(</html>)     
         htmlfile.write(helper.endHtml())
@@ -124,7 +125,7 @@ def main():
         htmlfile.close()
         
         
-    url= "file:///home/jameson/TestAutomation/reports/report.html"
+    url= "../reports/report.html"
         
     webbrowser.open(url)
         
