@@ -18,15 +18,15 @@ The five methods tested are: add, sub, div, mod, mul
 
 Project Contents (Folder Names & Descriptions):
 
-/scripts/ - contains main running script, runAllTests.py
+/scripts/ - contains main python running script, runAllTests.py
 
 /testCases/ - contains text files detailing each test case. Holds information to be passed
 
-/project/src/ - location of the Calculator activity that is being tested
+/project/src/ - location of the python Calculator activity that is being tested
 
 /oracles/ - contains text files with expected outcomes of each test case
 
-/testCaseExecutables/ - contains the executable files to run each test case
+/testCaseExecutables/ - contains the python executable files to run each test case
 
 /reports/ - contains the HTML file containing the aggregated result information
 
