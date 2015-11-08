@@ -12,7 +12,7 @@ Overview:
 
 A testing framework to run test cases on the Calculator activity of Sugar
 
-The five methods tested are: add, subtract, divide, mod, multiply
+The five methods tested are: add, sub, div, mod, mul
 
 -------------------------------------
 
