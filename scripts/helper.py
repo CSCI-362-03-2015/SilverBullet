@@ -15,6 +15,7 @@ def findMethod(stringFile):
     
     
     lis= re.findall(r" .+\(.+\)", stringFile)
+
     
     return lis[0]
     
