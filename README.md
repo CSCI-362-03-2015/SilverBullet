@@ -36,7 +36,7 @@ Project Contents (Folder Names & Descriptions):
 
 Installation & Running Instructions:
 
-1. Clone the project to any desired filepath
+1. Clone the project from the TestAutomationProject branch to any desired filepath
 
 2. Navigate to /TestAutomation/scripts/
 
