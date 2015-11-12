@@ -1,0 +1,14 @@
+TestNumber: 7
+
+TestedRequirement: Return difference of two data values   
+
+TestedComponent: functions.py
+
+TestedMethod: sub(x,y)
+
+TestInputs:  -5 , -10
+
+Test Executable file: TestCase7.py
+
+ExpectedOutcome : testCase07oracle.txt
+

@@ -1,0 +1,14 @@
+TestNumber: 1
+
+TestedRequirement: Returns the sum of two dat values  will return their sum
+
+TestedComponent: functions.py
+
+TestedMethod: sub(x,y)
+
+TestInputs:  .1911 , .9998089
+
+Test Executable file: TestCase8.py
+
+ExpectedOutcome : testCase08oracle.txt
+

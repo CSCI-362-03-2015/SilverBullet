@@ -1,0 +1,13 @@
+TestNumber: 22
+
+TestedRequirement: Returns the result of two subtracted integers
+
+TestedComponent: functions.py
+
+TestedMethod: mod(x,y)
+
+TestInputs:  340 , 60
+
+Test Executable file: TestCase22.py
+
+ExpectedOutcome : testCase22oracle.txt

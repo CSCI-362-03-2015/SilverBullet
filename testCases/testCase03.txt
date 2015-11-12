@@ -1,0 +1,13 @@
+TestNumber:3
+
+TestedRequirement:Returns the sum of two dat values  will return their sum
+
+TestedComponent:functions.py
+
+TestedMethod: add(x,y)
+
+TestInputs: -1 , -1
+
+Test Executable file: TestCase3.py
+
+ExpectedOutcome : testCase3oracle.txt

@@ -1,0 +1,13 @@
+TestNumber: 19
+
+TestedRequirement: Returns the result of two subtracted integers
+
+TestedComponent: functions.py
+
+TestedMethod: div(x,y)
+
+TestInputs:  5.18 , 1.65
+
+Test Executable file: TestCase19.py
+
+ExpectedOutcome : testCase19oracle.txt

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+      
+
+#section {
+    width:350px;
+    float:left;
+    padding:10px;	
+    text-align:center; 	
+     
+}
+#footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    
+   padding:5px;	 	 
+}
+</style>
+</head>
+<body>
+
+<div id="header">
+<h1>Silver Bullets</h1>
+</div>
+
+
+
+<div id="section">
+<h2>Test Report</h2>
+<p>
+
+</p>
+<p>
+
+</p>
+</div>
+
+<div id="footer">
+
+</div>
+
+</body>
+</html>

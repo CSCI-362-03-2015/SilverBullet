@@ -1,0 +1,7 @@
+cd ..
+
+cd testCases
+
+ls | cat 
+
+pwd
