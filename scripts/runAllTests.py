@@ -20,6 +20,7 @@ def main():
     testCaseList = helper.filterDir(sorted(os.listdir(testCasesPath)))# Store a list of files in the directory
 
     pyFiles =[]# List to store py execuable file
+    
     pyInput =[]# List of inputs for each testCase file
     testMethodList=[]# list of methods for each testCase
     testReqs=[]# List of Tested Requirements from each file testCase file
@@ -27,25 +28,28 @@ def main():
     
     ###########################################################
 
-    #iterate through each in the dir
+    #iterate through each file in the dir
     #finds the data needed
     # and appends it to its related list 
+    
     for file in testCaseList: 
         
         fil = open(file, "r")
 
         string = fil.read()
 
-        pyFiles.append(helper.findPyfiles(string))       
+        pyFiles.append(helper.findPyfiles(string)) 
+          
         pyInput.append(helper.findTestInput(string))
         testMethodList.append(helper.findMethod(string))
         
         
         fil.close()
-       
+    
     #########################################################    
 
     #Search path for modules
+    
     sys.path.insert(0,"../testCaseExecutables/")
     for i in range(len(testCaseList)):
         
@@ -78,15 +82,15 @@ def main():
     resultList=[]#List of Pass/Fail
         
     for i in range(len(outputFiles)):
-        print oraclesFiles, outputFiles
+        
 
         oracleContents=open(pathOracle+oraclesFiles[i],"r") #opens oracle file
         
         outContents=open(pathOutput+outputFiles[i],"r")# opens output put file
 
-        OracleString= oracleContents.read() #reads oracle file
+        OracleString= oracleContents.read().replace('\n','') #reads oracle file
 
-        OutcontentString=outContents.read()#reads output file
+        OutcontentString=outContents.read().replace('\n','')#reads output file
         
         
         oracleList.append(OracleString)
@@ -96,7 +100,11 @@ def main():
         #Compares the tested result with the oracle 
         #and appends Pass to $resultList if they are equal 
         #and Fail if not
-        if eval(OracleString) == eval(OutcontentString):
+        outString = str(OutcontentString)
+        outOracle = str(OracleString)
+
+        
+        if outOracle == outString:
             
             resultList.append("Pass")
         else:
