@@ -40,7 +40,7 @@ Installation & Running Instructions:
 
 2. Navigate to /TestAutomation/scripts/
 
-3. Run 'runAllTests.py'
+3. Run 'runAllTests.py' with python2
 
 4. An HTML file will open, the location of this file is at /TestAutomation/reports/
 
