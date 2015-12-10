@@ -28,7 +28,7 @@ def main():
     
     ###########################################################
 
-    #iterate through each in the dir
+    #iterates through each file in the dir
     #finds the data needed
     # and appends it to its related list 
     i=0
