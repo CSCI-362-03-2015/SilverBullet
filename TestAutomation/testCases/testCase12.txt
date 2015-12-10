@@ -1,0 +1,14 @@
+TestNumber: 12
+
+TestedRequirement: Multipy two data values and return the product.
+
+TestedComponent: functions.py
+
+TestedMethod: mul(x,y)
+
+TestInputs:  -7 , -7
+
+Test Executable file: TestCase12.py
+
+ExpectedOutcome : testCase12oracle.txt
+

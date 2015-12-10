@@ -1,0 +1,13 @@
+TestNumber: 25
+
+TestedRequirement: Returns the Remainder of data values.
+
+TestedComponent: functions.py
+
+TestedMethod: mod(x,y)
+
+TestInputs:  -100 , -23.14
+
+Test Executable file: TestCase25.py
+
+ExpectedOutcome : testCase25oracle.txt

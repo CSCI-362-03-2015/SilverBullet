@@ -1,0 +1,13 @@
+TestNumber:2
+
+TestedRequirement:Returns the sum of two data values  will return their sum
+
+TestedComponent:functions.py
+
+TestedMethod: add(x,y)
+
+TestInputs: 1 , "testString"
+
+Test Executable file: TestCase2.py
+
+ExpectedOutcome : testCase2oracle.txt

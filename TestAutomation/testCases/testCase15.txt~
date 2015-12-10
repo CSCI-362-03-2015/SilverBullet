@@ -1,0 +1,14 @@
+TestNumber: 15
+
+TestedRequirement: Returns the sum of two dat values  will return their sum
+
+TestedComponent: functions.py
+
+TestedMethod: mul(x,y)
+
+TestInputs:  "silver" , 4
+
+Test Executable file: TestCase15.py
+
+ExpectedOutcome : testCase15oracle.txt
+

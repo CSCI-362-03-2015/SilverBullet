@@ -1,0 +1,64 @@
+
+cd ..
+
+cd testCaseExecutables
+arr=( * )
+
+declare -a String
+
+for ((i=0; i<${#arr[*]}; i++));
+do	         
+	  python ${arr[i]} | out.txt
+	      	
+done
+
+
+
+cd ..
+cd oracles1
+
+arr2=(*)
+declare -a String
+
+for ((i=0; i<${#arr2[*]}; i++));
+do	
+	  String= ${arr2[i]}
+	  
+	  	
+done
+
+cd ..
+cd output
+
+arr3=(*)
+declare -a String2
+for ((i=0; i<${#arr3[*]}; i++));
+do	
+	  String2[i]= ${arr3[i]}
+	  	  	
+done
+
+
+for(( i= 0 ; i < 5; i++))
+do
+
+if [ ${String[$i]} == ${String2[$i]} ]
+then
+     echo  ${String[$i]} and ${String2[$i]}  
+	echo "pass"
+else
+        echo "fail"
+fi
+done
+
+
+
+
+
+
+
+
+
+
+
+

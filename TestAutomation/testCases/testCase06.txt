@@ -1,0 +1,13 @@
+TestNumber: 6
+
+TestedRequirement: Returns the result of two subtracted integers
+
+TestedComponent: functions.py
+
+TestedMethod: sub(x,y)
+
+TestInputs:  -1 , 3
+
+Test Executable file: TestCase6.py
+
+ExpectedOutcome : testCase06oracle.txt

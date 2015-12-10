@@ -1,0 +1,26 @@
+import re
+
+def runAllTest():
+    string ="""TestNumber: 1
+
+TestedRequirement: Test that passing two whole integers will return their sum
+
+TestedComponent: functions.py
+
+TestedMethod: add(x, y)
+
+TestInputs:  3 , 2
+
+Test Executable file: TestCase1.py
+
+ExpectedOutcome : testCase1oracle.txt"""
+    
+    
+    
+    test = re.findall(r"( a.*(\))$", string)
+    print test[0]
+    return test[0]
+    
+
+
+runAllTest()

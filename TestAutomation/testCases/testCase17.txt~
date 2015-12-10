@@ -1,0 +1,13 @@
+TestNumber: 17
+
+TestedRequirement: Divides two data values and returns the quotient.
+
+TestedComponent: functions.py
+
+TestedMethod: div(x,y)
+
+TestInputs:  0 , 4
+
+Test Executable file: TestCase17.py
+
+ExpectedOutcome : testCase17oracle.txt
