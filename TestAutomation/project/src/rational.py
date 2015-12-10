@@ -36,8 +36,8 @@ class Rational:
 
     def set(self, n, d=None):
         if d is not None:
-            self.n = long(n)
-            self.d = long(d)
+            self.n = int(n)
+            self.d = int(d)
         elif type(n) is types.TupleType or type(n) is types.ListType:
             self.n = long(rval[0])
             self.d = long(rval[1])
