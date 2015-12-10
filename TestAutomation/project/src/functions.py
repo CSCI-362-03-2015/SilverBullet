@@ -77,12 +77,12 @@ def _d(val):
 
     if isinstance(val, _Decimal):
         return val
-    elif type(val) in (types.IntType, types.LongType):
+    elif type(val) in (int, int):
         return _Decimal(val)
-    elif type(val) == types.StringType:
+    elif type(val) == str:
         d = _Decimal(val)
         return d.normalize()
-    elif type(val) is types.FloatType or hasattr(val, '__float__'):
+    elif type(val) is float or hasattr(val, '__float__'):
         s = '%.18e' % float(val)
         d = _Decimal(s)
         return d.normalize()
@@ -132,7 +132,8 @@ def add(x, y):
     if isinstance(x, _Decimal) or isinstance(y, _Decimal):
         x = _d(x)
         y = _d(y)
-    return x + y
+        #fault inserted: added abs method to return value
+    return abs(x + y)
 add.__doc__ = _('add(x, y), return x + y')
 
 def asin(x):
@@ -154,6 +155,7 @@ atan.__doc__ = _(
 is x. Defined for all x')
 
 def atanh(x):
+
     return math.atanh(x)
 atanh.__doc__ = _(
 'atanh(x), return the arc hyperbolic tangent of x. This is the value y for \
@@ -194,7 +196,8 @@ cosh.__doc__ = _(
 'cosh(x), return the hyperbolic cosine of x. Given by (exp(x) + exp(-x)) / 2')
 
 def div(x, y):
-    if y == 0 or y == 0.0:
+
+    if x == 0 or x == 0.0:#fault insert changed y to x
         raise ValueError(_('Can not divide by zero'))
 
     if is_int(x) and float(abs(x)) < 1e12 and \
@@ -287,7 +290,7 @@ def inv(x):
 inv.__doc__ = _('inv(x), return the inverse of x, which is 1 / x')
 
 def is_int(n):
-    if type(n) in (types.IntType, types.LongType):
+    if type(n) in (int, int):
         return True
 
     if isinstance(n, _Rational):
@@ -321,10 +324,11 @@ log10.__doc__ = _(
 10^y equals x. Defined for x >= 0.')
 
 def mod(x, y):
-    if is_int(y):
-        return x % y
-    else:
-        raise ValueError(_('Can only calculate x modulo <integer>'))
+    #fault inserted: won't check that the y value is an integer 
+    #if is_int(y):
+    return x % y
+    #else:
+        #raise ValueError(_('Can only calculate x modulo <integer>'))
 mod.__doc__ = _(
 'mod(x, y), return the modulus of x with respect to y. This is the remainder \
 after dividing x by y.')
@@ -333,7 +337,8 @@ def mul(x, y):
     if isinstance(x, _Decimal) or isinstance(y, _Decimal):
         x = _d(x)
         y = _d(y)
-    return x * y
+        #fault inserted: indented return statement.
+        return x * y
 mul.__doc__ = _('mul(x, y), return x * y')
 
 def negate(x):
@@ -420,9 +425,10 @@ def square(x):
 square.__doc__ = _('square(x), return x * x')
 
 def sub(x, y):
-    if isinstance(x, _Decimal) or isinstance(y, _Decimal):
-        x = _d(x)
-        y = _d(y)
+    #fault inserted: took away if statement so it would not convert values to decimals.
+    #if isinstance(x, _Decimal) or isinstance(y, _Decimal):
+     #   x = _d(x)
+      #  y = _d(y)
     return x - y
 sub.__doc__ = _('sub(x, y), return x - y')
 
@@ -443,4 +449,3 @@ def xor(x, y):
 xor.__doc__ = _(
 'xor(x, y), logical xor. Returns True if either x is True (and y is False) \
 or y is True (and x is False), else returns False')
-
