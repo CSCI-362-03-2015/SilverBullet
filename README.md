@@ -38,9 +38,9 @@ Installation & Running Instructions:
 
 1. Clone the project from the TestAutomationProject branch to any desired filepath
 
-2. Navigate to /TestAutomation/scripts/
+2. Navigate to /TestAutomation/, the top level folder of the project.
 
-3. Run 'runAllTests.py' with python2
+3. Execute the command "./scripts/runAllTests.sh"
 
 4. An HTML file will open, the location of this file is at /TestAutomation/reports/
 
